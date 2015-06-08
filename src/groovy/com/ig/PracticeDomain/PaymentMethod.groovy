@@ -1,7 +1,17 @@
 package com.ig.PracticeDomain
-/**
- * Created by intelligrape on 8/6/15.
- */
+
 enum PaymentMethod {
+    CREDITCARD('creditCard'),
+    DEBITCARD('debitCard'),
+    NETBANKING('netBanking'),
+    EMI('emi'),
+    CASHONDELIVERY('cashOnDelivery')
+
+    String paymentMethod
+
+    PaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod
+    }
+
 
 }
