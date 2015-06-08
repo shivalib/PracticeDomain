@@ -1,4 +1,4 @@
-package com.ig.PracticeDomian
+package com.ig.PracticeDomain
 
 class Brand {
     String name

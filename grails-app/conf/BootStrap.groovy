@@ -1,12 +1,12 @@
-import com.ig.PracticeDomian.Category
-import com.ig.PracticeDomian.Customer
-import com.ig.PracticeDomian.CustomerOrder
-import com.ig.PracticeDomian.Discount
-import com.ig.PracticeDomian.OrderedProduct
-import com.ig.PracticeDomian.Product
-import com.ig.PracticeDomian.Query
-import com.ig.PracticeDomian.Review
-import com.ig.PracticeDomian.ShoppingCart
+import com.ig.PracticeDomain.CartProduct
+import com.ig.PracticeDomain.Category
+import com.ig.PracticeDomain.Customer
+import com.ig.PracticeDomain.CustomerOrder
+import com.ig.PracticeDomain.Discount
+import com.ig.PracticeDomain.OrderedProduct
+import com.ig.PracticeDomain.Product
+import com.ig.PracticeDomain.Review
+import com.ig.PracticeDomain.ShoppingCart
 
 class BootStrap {
 
@@ -70,9 +70,12 @@ class BootStrap {
         orderedProduct3.save(failOnError: true, flush: true)
 
         ShoppingCart shoppingCart=new ShoppingCart(customer: customer1)
-        shoppingCart.addToProducts(product1)
-        shoppingCart.addToProducts(product2)
         shoppingCart.save(failOnError: true,flush: true)
+
+        CartProduct cartProduct=new CartProduct(shoppingCart: shoppingCart, product: product1,quantity:2 )
+        cartProduct.save(failOnError: true,flush: true)
+        CartProduct cartProduct1=new CartProduct(shoppingCart:shoppingCart,product: product2,quantity: 5)
+        cartProduct1.save(failOnError: true,flush: true)
 
     }
     def destroy = {

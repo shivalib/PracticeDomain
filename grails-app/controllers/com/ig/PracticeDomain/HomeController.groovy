@@ -1,12 +1,5 @@
 package com.ig.PracticeDomain
 
-import com.ig.PracticeDomian.Category
-import com.ig.PracticeDomian.Customer
-import com.ig.PracticeDomian.CustomerOrder
-import com.ig.PracticeDomian.OrderedProduct
-import com.ig.PracticeDomian.Product
-import com.ig.PracticeDomian.ShoppingCart
-
 class HomeController {
 
     def index() {
