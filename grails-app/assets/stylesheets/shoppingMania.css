@@ -1,0 +1,26 @@
+.right {
+    float: right;
+}
+
+.left {
+    float: left;
+}
+
+.leftDiv {
+    margin-left: 2%;
+}
+
+.rightDiv {
+    margin-right: 2%;
+}
+
+.logo {
+    height: 35px;
+    width: 30px;
+}
+
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
