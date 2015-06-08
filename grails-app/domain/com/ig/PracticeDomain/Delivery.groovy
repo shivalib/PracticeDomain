@@ -5,10 +5,8 @@ class Delivery {
     Date dateCreated
     Date lastUpdated
 
-    static belongsTo = [customerOrder: CustomerOrder]
+    static belongsTo = [CustomerOrder]
 
     static constraints = {
-        deliveryCharge(nullable: true)
-        status(nullable: true, blank: true)
     }
 }

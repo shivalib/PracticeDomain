@@ -9,13 +9,9 @@ class Customer {
     String contactNumber
     Address address
 
-    static hasMany = [orderedProduct: CustomerOrder]
+    static hasMany = [customerOrder: CustomerOrder]
 
     static constraints = {
-        username(nullable: false,blank: false)
-        password(nullable: false,blank: false)
-        email(email: true,unique: true)
-        address(nullable: true)
-        contactNumber(nullable: true,blank: true)
+        email(email: true, unique: true)
     }
 }

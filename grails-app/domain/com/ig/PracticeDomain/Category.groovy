@@ -6,6 +6,5 @@ class Category {
 
     static constraints = {
         parentCategory(nullable: true)
-        name(nullable: true, blank: true)
     }
 }

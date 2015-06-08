@@ -15,15 +15,12 @@ class Product {
     Date dateCreated
     Date lastUpdated
 
-    static belongsTo = [Seller,ShoppingCart]
+    static belongsTo = [Seller, ShoppingCart]
 
-    static hasMany = [productSellers: ProductSeller, orderedProduct: OrderedProduct,reviews:Review]
+    static hasMany = [productSellers: ProductSeller, orderedProduct: OrderedProduct, reviews: Review]
 
     static constraints = {
-        name(nullable: true, blank: true)
-        description(nullable: true, blank: true)
         modelNo(nullable: true, blank: true)
-        category(nullable: true)
         imagePath(nullable: true, blank: true)
         brand(nullable: true)
         discount(nullable: true)
