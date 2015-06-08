@@ -73,6 +73,6 @@ class HomeController {
     def viewShoppingCart(){
         Customer customer=Customer.get(1)
         ShoppingCart shoppingCart=ShoppingCart.findByCustomer(customer)
-        println shoppingCart.products
+        println shoppingCart.cartProducts.product
     }
 }

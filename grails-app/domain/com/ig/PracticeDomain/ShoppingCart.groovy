@@ -6,7 +6,7 @@ class ShoppingCart {
 
     static belongsTo = [customer: Customer]
 
-    static hasMany = [cartProduct:CartProduct]
+    static hasMany = [cartProducts:CartProduct]
 
     static constraints = {
     }
