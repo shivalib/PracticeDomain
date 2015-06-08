@@ -1,14 +1,14 @@
 package com.ig.PracticeDomain
 
 class Delivery {
-    def deliveryCharge
     String status
     Date dateCreated
     Date lastUpdated
 
-    static belongsTo = [orderedProduct: CustomerOrder]
+    static belongsTo = [customerOrder: CustomerOrder]
 
     static constraints = {
+        deliveryCharge(nullable: true)
         status(nullable: true, blank: true)
     }
 }
