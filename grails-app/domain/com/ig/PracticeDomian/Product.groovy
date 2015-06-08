@@ -15,7 +15,7 @@ class Product {
     Date dateCreated
     Date lastUpdated
 
-    static belongsTo = Seller
+    static belongsTo = [Seller,ShoppingCart]
 
     static hasMany = [productSellers: ProductSeller, orderedProduct: OrderedProduct,reviews:Review]
 

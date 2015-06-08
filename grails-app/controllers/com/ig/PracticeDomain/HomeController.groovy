@@ -5,6 +5,7 @@ import com.ig.PracticeDomian.Customer
 import com.ig.PracticeDomian.CustomerOrder
 import com.ig.PracticeDomian.OrderedProduct
 import com.ig.PracticeDomian.Product
+import com.ig.PracticeDomian.ShoppingCart
 
 class HomeController {
 
@@ -63,7 +64,6 @@ class HomeController {
         OrderedProduct orderedProduct3 = new OrderedProduct(product: product1, customerOrder: customerOrder, quantity: 5, price: product1.price)
         orderedProduct3.save(flush: true, failOnError: true)
 
-
     }
 
     def salesOfProduct() {
@@ -75,5 +75,11 @@ class HomeController {
             totalSales += it.price
         }
         println "totalSales :" + totalSales
+    }
+
+    def viewShoppingCart(){
+        Customer customer=Customer.get(1)
+        ShoppingCart shoppingCart=ShoppingCart.findByCustomer(customer)
+        println shoppingCart.products
     }
 }

@@ -11,5 +11,7 @@ class ShoppingCart {
     static hasMany = [products: Product]
 
     static constraints = {
+        quantity(nullable:true)
+        price(nullable:true)
     }
 }

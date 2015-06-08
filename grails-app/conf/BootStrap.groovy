@@ -6,6 +6,7 @@ import com.ig.PracticeDomian.OrderedProduct
 import com.ig.PracticeDomian.Product
 import com.ig.PracticeDomian.Query
 import com.ig.PracticeDomian.Review
+import com.ig.PracticeDomian.ShoppingCart
 
 class BootStrap {
 
@@ -67,6 +68,11 @@ class BootStrap {
 
         OrderedProduct orderedProduct3 = new OrderedProduct(customerOrder: customerOrder2, product: product2, quantity: 5, price: product2.price)
         orderedProduct3.save(failOnError: true, flush: true)
+
+        ShoppingCart shoppingCart=new ShoppingCart(customer: customer1)
+        shoppingCart.addToProducts(product1)
+        shoppingCart.addToProducts(product2)
+        shoppingCart.save(failOnError: true,flush: true)
 
     }
     def destroy = {
