@@ -63,6 +63,7 @@ class HomeController {
         OrderedProduct orderedProduct3 = new OrderedProduct(product: product1, customerOrder: customerOrder, quantity: 5, price: product1.price)
         orderedProduct3.save(flush: true, failOnError: true)
 
+
     }
 
     def salesOfProduct() {
