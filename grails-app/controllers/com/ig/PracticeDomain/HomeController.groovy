@@ -75,4 +75,18 @@ class HomeController {
         ShoppingCart shoppingCart=ShoppingCart.findByCustomer(customer)
         println shoppingCart.cartProducts.product
     }
+
+    def viewBrand(){
+        println ".........."
+        Product product=Product.get(1)
+        println product.brand.name
+    }
+
+    def viewProductOfBrand(){
+        println "--------"
+        Brand brand=Brand.get(1)
+        def productList=Product.findAllWhere(brand:brand)
+        println brand.name
+        println productList.name
+    }
 }

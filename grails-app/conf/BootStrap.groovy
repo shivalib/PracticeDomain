@@ -1,3 +1,4 @@
+import com.ig.PracticeDomain.Brand
 import com.ig.PracticeDomain.CartProduct
 import com.ig.PracticeDomain.Category
 import com.ig.PracticeDomain.Customer
@@ -5,21 +6,26 @@ import com.ig.PracticeDomain.CustomerOrder
 import com.ig.PracticeDomain.Discount
 import com.ig.PracticeDomain.OrderedProduct
 import com.ig.PracticeDomain.Product
+import com.ig.PracticeDomain.ProductSeller
 import com.ig.PracticeDomain.Review
+import com.ig.PracticeDomain.Seller
 import com.ig.PracticeDomain.ShoppingCart
 
 class BootStrap {
 
     def init = { servletContext ->
 
-        Product product1 = new Product(name: 'watch', price: 100, totalQuantity: 10, quantityAvailable: 10,
+        Brand brand = new Brand(name: 'Fastrack')
+        brand.save(flush: true, failOnError: true)
+
+        Product product1 = new Product(name: 'watch', brand: brand, price: 100, totalQuantity: 10, quantityAvailable: 10,
                 parameters: [
                         styleCode    : '6107SL02 ',
                         strapMaterial: 'Leather Strap'
                 ])
         product1.save(failOnError: true, flush: true)
 
-        Product product2 = new Product(name: 'shoe', price: 200, totalQuantity: 10, quantityAvailable: 10,
+        Product product2 = new Product(name: 'shoe', price: 200, brand: brand, totalQuantity: 10, quantityAvailable: 10,
                 parameters: [
                         tipShape: 'round',
                         weight  : '116gm',
@@ -69,13 +75,22 @@ class BootStrap {
         OrderedProduct orderedProduct3 = new OrderedProduct(customerOrder: customerOrder2, product: product2, quantity: 5, price: product2.price)
         orderedProduct3.save(failOnError: true, flush: true)
 
-        ShoppingCart shoppingCart=new ShoppingCart(customer: customer1)
-        shoppingCart.save(failOnError: true,flush: true)
+        ShoppingCart shoppingCart = new ShoppingCart(customer: customer1)
+        shoppingCart.save(failOnError: true, flush: true)
 
-        CartProduct cartProduct=new CartProduct(shoppingCart: shoppingCart, product: product1,quantity:2 )
-        cartProduct.save(failOnError: true,flush: true)
-        CartProduct cartProduct1=new CartProduct(shoppingCart:shoppingCart,product: product2,quantity: 5)
-        cartProduct1.save(failOnError: true,flush: true)
+        CartProduct cartProduct = new CartProduct(shoppingCart: shoppingCart, product: product1, quantity: 2)
+        cartProduct.save(failOnError: true, flush: true)
+        CartProduct cartProduct1 = new CartProduct(shoppingCart: shoppingCart, product: product2, quantity: 5)
+        cartProduct1.save(failOnError: true, flush: true)
+
+
+        Seller seller = new Seller(name: 'seller1')
+        seller.save(failOnError: true, flush: true)
+        ProductSeller productSeller=new ProductSeller(seller:seller,product: product1)
+        productSeller.save(failOnError: true,flush: true)
+        ProductSeller productSeller1=new ProductSeller(seller:seller,product: product2)
+        productSeller.save(failOnError: true,flush: true)
+
 
     }
     def destroy = {

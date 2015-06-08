@@ -4,8 +4,7 @@ class Brand {
     String name
     String logoPath
 
-    static hasMany = [products:Product]
-
     static constraints = {
+        logoPath(nullable: true,blank: true)
     }
 }
