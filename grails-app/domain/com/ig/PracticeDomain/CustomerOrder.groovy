@@ -1,7 +1,7 @@
 package com.ig.PracticeDomain
 
 class CustomerOrder {
-    Delivery delivery
+    String deliveryStatus
     Date dateCreated
     Date lastUpdated
 
