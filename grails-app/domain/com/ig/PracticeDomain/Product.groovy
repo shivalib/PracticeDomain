@@ -5,6 +5,7 @@ class Product {
     String description
     String modelNo
     float price
+    float discountedPrice
     int quantityAvailable
     int totalQuantity
     String imagePath
@@ -23,9 +24,13 @@ class Product {
         modelNo(nullable: true, blank: true)
         imagePath(nullable: true, blank: true)
         brand(nullable: true)
-        discount(nullable: true,blank:true)
+        discount(nullable: true, blank: true)
     }
 
     static mapping = {
+    }
+
+    def getDiscountedPrice() {
+        return discount ? (price - (price * discount.discountAllowed) / 100) : price
     }
 }

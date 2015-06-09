@@ -1,5 +1,7 @@
 package com.ig.PracticeDomain
 
+import org.hibernate.criterion.Projections
+
 class HomeController {
 
     def index() {
@@ -17,40 +19,37 @@ class HomeController {
         render(view: 'homePage')
     }
 
-    def priceAfterDiscount() {
+    def orderTotal() {
         CustomerOrder customerOrder = CustomerOrder.get(1)
-        def productPrice = 0
-        def orderTotal = 0
-        def discountedPrice
-        def priceAfterDiscount = 0
-        def discount = 0
 
-        customerOrder.orderedProducts.each {
-            discount = it.product.discount?.discountAllowed
-            println discount
+        def orderedProducts = OrderedProduct.findAllByCustomerOrder(customerOrder)
+        def productTotal
+        def grandTotal = 0
 
-            productPrice = it.price * it.quantity
-            println "product price * qty :" + productPrice
+        println "try :" + orderedProducts.product.discountedPrice.sum()
 
-            if (discount) {
-                discountedPrice = discount * productPrice / 100
-                println "discounted price :" + discountedPrice
-            }
-            else
-                discountedPrice=0
-
-            priceAfterDiscount = productPrice - discountedPrice
-            println "after discount :" + priceAfterDiscount
-//
-            orderTotal +=priceAfterDiscount
-            discountedPrice = 0
+        orderedProducts.each {
+            productTotal = 0
+            println it.product.name
+            println "price after discount :" + it.product.discountedPrice
+            println "quantity :" + it.quantity
+            productTotal = it.quantity * it.product.discountedPrice
+            println "product total=" + productTotal
+            grandTotal += productTotal
         }
-        println "Total price :" + orderTotal
+        println "Order total :" + grandTotal
     }
 
-    def deleteProduct() {
-        Product product = Product.findByName('shoe')
-        product.delete(flush: true)
+    def priceAfterDiscount() {
+        CustomerOrder customerOrder = CustomerOrder.get(1)
+        def products = OrderedProduct.createCriteria().list {
+            eq('customerOrder', customerOrder)
+            projections {
+                sqlProjection 'sum(quantity * price) as totalPrice', 'totalPrice', FLOAT
+            }
+        }
+
+        println "Order total :" + products
     }
 
     def averageRating() {
