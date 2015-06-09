@@ -18,12 +18,34 @@ class HomeController {
     }
 
     def priceAfterDiscount() {
-        Product product = Product.findByName('shoe')
-        println "Price of shoe :" + product.price
-        def discountedPrice = (product.discount.discountAllowed * product.price) / 100
-        def priceAfterDiscount = product.price - discountedPrice
-        println("Discount :" + product.discount.discountAllowed + "%")
-        println("Price after discount :" + priceAfterDiscount)
+        CustomerOrder customerOrder = CustomerOrder.get(1)
+        def productPrice = 0
+        def orderTotal = 0
+        def discountedPrice
+        def priceAfterDiscount = 0
+        def discount = 0
+
+        customerOrder.orderedProducts.each {
+            discount = it.product.discount?.discountAllowed
+            println discount
+
+            productPrice = it.price * it.quantity
+            println "product price * qty :" + productPrice
+
+            if (discount) {
+                discountedPrice = discount * productPrice / 100
+                println "discounted price :" + discountedPrice
+            }
+            else
+                discountedPrice=0
+
+            priceAfterDiscount = productPrice - discountedPrice
+            println "after discount :" + priceAfterDiscount
+//
+            orderTotal +=priceAfterDiscount
+            discountedPrice = 0
+        }
+        println "Total price :" + orderTotal
     }
 
     def deleteProduct() {
@@ -70,23 +92,24 @@ class HomeController {
         println "totalSales :" + totalSales
     }
 
-    def viewShoppingCart(){
-        Customer customer=Customer.get(1)
-        ShoppingCart shoppingCart=ShoppingCart.findByCustomer(customer)
+    def viewShoppingCart() {
+        Customer customer = Customer.get(1)
+        ShoppingCart shoppingCart = ShoppingCart.findByCustomer(customer)
         println shoppingCart.cartProducts.product
     }
 
-    def viewBrand(){
+    def viewBrand() {
         println ".........."
-        Product product=Product.get(1)
+        Product product = Product.get(1)
         println product.brand.name
     }
 
-    def viewProductOfBrand(){
+    def viewProductOfBrand() {
         println "--------"
-        Brand brand=Brand.get(1)
-        def productList=Product.findAllWhere(brand:brand)
+        Brand brand = Brand.get(1)
+        def productList = Product.findAllWhere(brand: brand)
         println brand.name
         println productList.name
     }
+
 }

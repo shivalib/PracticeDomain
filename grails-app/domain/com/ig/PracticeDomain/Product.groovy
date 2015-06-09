@@ -23,7 +23,7 @@ class Product {
         modelNo(nullable: true, blank: true)
         imagePath(nullable: true, blank: true)
         brand(nullable: true)
-        discount(nullable: true)
+        discount(nullable: true,blank:true)
     }
 
     static mapping = {
