@@ -10,5 +10,6 @@ class CustomerOrder {
     static hasMany = [orderedProducts: OrderedProduct]
 
     static constraints = {
+        deliveryStatus(nullable: true,blank: true)
     }
 }

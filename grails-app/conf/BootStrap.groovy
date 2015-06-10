@@ -30,14 +30,14 @@ class BootStrap {
         Category category7 = new Category(name: 'Eatables')
         category7.save(flush: true, failOnError: true)
 
-        Product product1 = new Product(name: 'watch', category: category5, brand: brand, description: 'This is product1', price: 100, totalQuantity: 10, quantityAvailable: 10,
+        Product product1 = new Product(name: 'watch', category: category5, brand: brand, description: 'This is product1', price: 100,
                 parameters: [
                         styleCode    : '6107SL02 ',
                         strapMaterial: 'Leather Strap'
                 ])
         product1.save(failOnError: true, flush: true)
 
-        Product product2 = new Product(name: 'shoe', category: category6, price: 200, brand: brand, description: 'This is product2', totalQuantity: 10, quantityAvailable: 10,
+        Product product2 = new Product(name: 'shoe', category: category6, price: 200, brand: brand, description: 'This is product2',
                 parameters: [
                         tipShape: 'round',
                         weight  : '116gm',
@@ -45,7 +45,7 @@ class BootStrap {
                 ])
         product2.save(failOnError: true, flush: true)
 
-        Product product3 = new Product(name: 'maggi', category: category7, price: 10, description: 'This is product3', totalQuantity: 10, quantityAvailable: 10)
+        Product product3 = new Product(name: 'maggi', category: category7, price: 10, description: 'This is product3')
         product3.save(failOnError: true, flush: true)
 
         Discount discount = new Discount(discountAllowed: 25, product: product1)
@@ -78,7 +78,7 @@ class BootStrap {
         Review review2 = new Review(customer: customer2, product: product1, title: 'title', description: 'blah blah', numberOfStars: 3)
         review2.save(failOnError: true, flush: true)
 
-        CustomerOrder customerOrder2 = new CustomerOrder(customer: customer2, delivery: new Delivery(status: 'Pending').save(failOnError: true, flush: true))
+        CustomerOrder customerOrder2 = new CustomerOrder(customer: customer2)
         customerOrder2.save(failOnError: true, flush: true)
 
         OrderedProduct orderedProduct = new OrderedProduct(customerOrder: customerOrder2, product: product3, quantity: 3, price: product3.price)
@@ -104,10 +104,10 @@ class BootStrap {
         ProductSeller productSeller1 = new ProductSeller(seller: seller, product: product2)
         productSeller.save(failOnError: true, flush: true)
 
-        Wishlist wishlist=new Wishlist(customer:customer2)
+        Wishlist wishlist = new Wishlist(customer: customer2)
         wishlist.addToProducts(product1)
         wishlist.addToProducts(product2)
-        wishlist.save(failOnError: true,flush: true)
+        wishlist.save(failOnError: true, flush: true)
     }
     def destroy = {
     }

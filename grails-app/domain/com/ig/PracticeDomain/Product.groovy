@@ -6,8 +6,6 @@ class Product {
     String modelNo
     float price
     float discountedPrice
-    int quantityAvailable
-    int totalQuantity
     String imagePath
     Map parameters
     Discount discount
